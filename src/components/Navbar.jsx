@@ -1,10 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import logo from "/logo.png";
 import { Link } from "react-router-dom";
-import { FiPhoneCall } from "react-icons/fi";
+import { FaRegUser } from "react-icons/fa";
+import Modal from "./Modal";
+import { AuthContext } from "../contexts/AuthProvider";
+import Profile from "./Profile";
 
 const Navbar = () => {
   const [isSticky, setSticky] = useState(false);
+  const { user } = useContext(AuthContext);
+  console.log(user);
 
   // handle scroll function
   useEffect(() => {
@@ -33,7 +38,7 @@ const Navbar = () => {
           <summary>Menu</summary>
           <ul className="p-2">
             <li>
-             <Link to='/menu'>All</Link>
+              <Link to="/menu">All</Link>
             </li>
             <li>
               <a>Salaad</a>
@@ -148,11 +153,19 @@ const Navbar = () => {
               <span className="badge badge-sm indicator-item">8</span>
             </div>
           </div>
-          {/* btn */}
-          <a className="btn bg-green rounded-full px-6 text-white flex items-center gap-2 border-none hover:text-green">
-            <FiPhoneCall />
-            Contact
-          </a>
+          {/* login  btn */}
+          {user ? (
+            <Profile user={user}/>
+          ) : (
+            <button
+              className="btn bg-green rounded-full px-6 text-white flex items-center gap-2 border-none hover:text-green"
+              onClick={() => document.getElementById("my_modal_5").showModal()}
+            >
+              <FaRegUser />
+              Login
+            </button>
+          )}
+          <Modal />
         </div>
       </div>
     </header>

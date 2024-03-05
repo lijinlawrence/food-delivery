@@ -5,7 +5,7 @@ import Slider from "react-slick";
 import Cards from "../../components/Cards";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 
-const simpleNextArrow = (props)=>{
+const SimpleNextArrow = (props)=>{
     const {className,style,onClick} =props;
     return (
         <div 
@@ -18,7 +18,7 @@ const simpleNextArrow = (props)=>{
     )
 }
 
-const simplePrevArrow = (props)=>{
+const SimplePrevArrow = (props)=>{
     const {className,style,onClick} =props;
     return (
         <div 
@@ -78,8 +78,8 @@ const SpecialDishes = () => {
         },
       },
     ],
-    nextArrow: <simpleNextArrow/>,
-    prevArrow:<simplePrevArrow/>
+    nextArrow: <SimpleNextArrow/>,
+    prevArrow:<SimplePrevArrow/>
   };
   return (
     <div className="section-container my-20 relative">
@@ -97,9 +97,9 @@ const SpecialDishes = () => {
       {/* slider */}
       <Slider ref={slider} {...settings} className=" overflow-hidden mt-10  ">
       {
-        recipes.map((item,i)=>(
+        recipes.map((item)=>(
           <div className=" ">
-              <Cards key={i} item={item}/>
+              <Cards key={item._id} item={item}/>
 
           </div>
         ))

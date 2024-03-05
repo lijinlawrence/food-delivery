@@ -29,3 +29,7 @@ header{
   text-underline-offset: 5px;
   color: #39DB4A;
 }
+
+::-webkit-scrollbar{
+  display: none;
+}
